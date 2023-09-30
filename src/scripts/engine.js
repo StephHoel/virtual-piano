@@ -1,5 +1,7 @@
 const pianoKeys = document.querySelectorAll(".piano-keys .key")
 
+const volumeSlider = document.querySelector('.volume-slider input')
+
 let mappedKeys = []
 
 let audio = new Audio('src/tunes/a.wav')
@@ -22,7 +24,13 @@ pianoKeys.forEach((key) => {
   mappedKeys.push(key.dataset.key)
 })
 
-document.addEventListener('keydown', (e) => {
-  if(mappedKeys.includes(e.key))
-    playTune(e.key)
+document.addEventListener('keydown',
+  (e) => {
+    if(mappedKeys.includes(e.key))
+      playTune(e.key)
+})
+
+volumeSlider.addEventListener('input',
+  (e) => {
+    audio.volume = e.target.value
 })
